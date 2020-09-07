@@ -1,0 +1,21 @@
+{% extends 'Blogapp/base.html' %}
+{% block content %}
+{% if category_list %}
+<br>
+<h1>{{ cats }}</h1>
+<ul>
+  {% for post in category_list %}
+  <li><a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a>-{{ post.author.first_name }} {{ post.author.last_name }}{{ post.post_date }}<br>
+    {{ post.content|safe }}
+    {% if user.is_authenticated %}
+    <a href="{% url 'update_post' post.pk %}">Edit</a>
+    <a href="{% url 'delete_post' post.pk %}">Delete</a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+{% else %}
+<h3>OOPs :( Sorry , This category doesn't exists.</h3>
+{% endif %}
+{% endblock %}

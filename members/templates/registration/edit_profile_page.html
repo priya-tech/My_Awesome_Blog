@@ -1,0 +1,30 @@
+{% extends 'Blogapp/base.html' %}
+{% block title %}Edit Profile Page
+{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated  %}
+    {% if user.id == profile.user.id %}
+          <h1>Update Profile Page</h1><br><br>
+          <div class="form-group">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Update Profile</button>
+          </form>
+          </div>
+
+
+      {% else %}
+
+      You are not the correct user to edit the profile.
+
+      {% endif %}
+
+{% else %}
+
+     You're not allowed here.!
+
+{% endif %}
+
+{% endblock %}

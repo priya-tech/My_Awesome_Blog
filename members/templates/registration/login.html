@@ -1,0 +1,14 @@
+{% extends 'Blogapp/base.html' %}
+{% block title %}Login
+{% endblock %}
+{% block content %}
+<h1>Login..</h1><br><br>
+<div class="form-group">
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-secondary">Login</button>
+</form>
+</div>
+<p>Don't have an account Please <a href="{% url 'register' %}" class="btn btn-secondary">Sign Up</a> </p>
+{% endblock %}

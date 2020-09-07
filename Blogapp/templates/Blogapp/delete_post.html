@@ -1,0 +1,23 @@
+{% extends 'Blogapp/base.html' %}
+{% block title %}Delete post{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated  %}
+    {% if user.id == post.author.id %}
+
+        <h1>Delete Blog Post</h1><br><br>
+        <div class="form-group">
+        <form method="post">
+          {% csrf_token %}
+          <b>Are you sure ?</b><br>
+        <button class="btn btn-secondary">Delete Post</button>
+        </form>
+        </div>
+    {% else %}
+        <h4>You're not allowed here !</h4>
+    {% endif %}
+{% else %}
+ You're not allowed here.!
+{% endif %}
+
+{% endblock %}
